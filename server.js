@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static('public'));
 
 // server configuration
-const PORT = 8080;
+const PORT = 3380;
 
 // //Middle Ware
 app.use(bodyParser.urlencoded({ extended: false }));
