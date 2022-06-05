@@ -583,7 +583,7 @@
       }
 
       if (returnMe.score3_1 !== null && returnMe.score3_2 !== null) {
-        if (returnMe.score3_1 > returnMe.score3_2) {
+        if (returnMe.score3_1 < returnMe.score3_2) {
           returnMe.first = document.getElementById("spot3-1").textContent;
           returnMe.second = document.getElementById("spot3-2").textContent;
         } else {
@@ -592,7 +592,7 @@
         }
       }
       if (returnMe.score3_3 !== null && returnMe.score3_4 !== null) {
-        if (returnMe.score3_3 > returnMe.score3_4) {
+        if (returnMe.score3_3 < returnMe.score3_4) {
           returnMe.third = document.getElementById("spot3-3").textContent;
         } else {
           returnMe.third = document.getElementById("spot3-4").textContent;
@@ -622,7 +622,7 @@
       if (this.score1_1 === '' || this.score1_2 === '') {
         document.getElementById("spot2-1").textContent = '';
       } else {
-        if (this.score1_1 > this.score1_2) {
+        if (this.score1_1 < this.score1_2) {
           document.getElementById("spot2-1").textContent = this.spot1;
           document.getElementById("spot1-1").parentElement.style.backgroundColor = "#90ee90";
           document.getElementById("spot1-2").parentElement.style.backgroundColor = "#ee9090";
@@ -637,7 +637,7 @@
         document.getElementById("spot3-1").textContent = '';
         document.getElementById("spot3-3").textContent = '';
       } else {
-        if (this.score2_1 > this.score2_2) {
+        if (this.score2_1 < this.score2_2) {
           document.getElementById("spot3-1").textContent = document.getElementById("spot2-1").textContent;
           document.getElementById("spot3-3").textContent = document.getElementById("spot2-2").textContent;
           document.getElementById("spot2-1").parentElement.style.backgroundColor = "#90ee90";
@@ -654,7 +654,7 @@
         document.getElementById("spot3-2").textContent = '';
         document.getElementById("spot3-4").textContent = '';
       } else {
-        if (this.score2_3 > this.score2_4) {
+        if (this.score2_3 < this.score2_4) {
           document.getElementById("spot3-2").textContent = document.getElementById("spot2-3").textContent;
           document.getElementById("spot3-4").textContent = document.getElementById("spot2-4").textContent;
           document.getElementById("spot2-3").parentElement.style.backgroundColor = "#90ee90";
@@ -662,14 +662,14 @@
         } else {
           document.getElementById("spot3-2").textContent = document.getElementById("spot2-4").textContent;
           document.getElementById("spot3-4").textContent = document.getElementById("spot2-3").textContent;
-          document.getElementById("spot2-3").parentElement.style.backgroundColor = "#90ee90";
-          document.getElementById("spot2-4").parentElement.style.backgroundColor = "#ee9090";
+          document.getElementById("spot2-4").parentElement.style.backgroundColor = "#90ee90";
+          document.getElementById("spot2-3").parentElement.style.backgroundColor = "#ee9090";
         }
       }
 
       if (this.score3_1 === '' || this.score3_2 === '') {
       } else {
-        if (this.score3_1 > this.score3_2) {
+        if (this.score3_1 < this.score3_2) {
           document.getElementById("spot3-1").parentElement.style.backgroundColor = "#90ee90";
           document.getElementById("spot3-2").parentElement.style.backgroundColor = "#ee9090";
         } else {
@@ -679,7 +679,7 @@
       }
       if (this.score3_3 === '' || this.score3_4 === '') {
       } else {
-        if (this.score3_3 > this.score3_4) {
+        if (this.score3_3 < this.score3_4) {
           document.getElementById("spot3-3").parentElement.style.backgroundColor = "#90ee90";
           document.getElementById("spot3-4").parentElement.style.backgroundColor = "#ee9090";
         } else {

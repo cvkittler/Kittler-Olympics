@@ -531,7 +531,7 @@
             <div class="game-button" id="team3">TEST</div>
         </div>
         <div class="conainer">
-            <div class="game-button other">forth</div>
+            <div class="game-button other">fourth</div>
             <div class="game-button show-score" id="score4"></div>
             <div class="game-button" id="team4">TEST</div>
         </div>
@@ -579,6 +579,7 @@
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
                     standingsGlobal = JSON.parse(xhr.response);
+                    console.log(standingsGlobal);
                     populateLeaderBoard();
                 }
             }
@@ -602,6 +603,7 @@
             if (standingsGlobal[game].third !== "" && standingsGlobal[game].third !== " ") {
                 teamScores[standingsGlobal[game].third] += 1;
             }
+                console.log(teamScores);
         }
         let array = [];
         for (var i in teamScores) {
