@@ -1,1 +1,0 @@
-{"team1":"CAW","team2":"Red,White & Drew","team3":"Smoking J's","team4":"Team Moe","team5":"Tay's Terrorists"}
