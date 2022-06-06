@@ -119,6 +119,7 @@
   function loadStandings(json){
     if(json["init"]){
       console.log("populating board")
+      fillHtml(json);
     }else{
       console.log("Pick random starting positions")
       
@@ -126,6 +127,7 @@
           return res.json();
       }).then(teams =>{
           json = populateTeams(json,teams);
+          fillHtml(json);
       });
     }
   }
