@@ -1,0 +1,32 @@
+{
+    "play_in":{
+        "team1":"",
+        "team2":"",
+        "score1":"",
+        "score2":""
+    },
+    "game_1":{
+        "team1":"",
+        "team2":"",
+        "score1":"",
+        "score2":""
+    },
+    "game_2":{
+        "team1":"",
+        "team2":"",
+        "score1":"",
+        "score2":""
+    },
+    "finals":{
+        "team1":"",
+        "team2":"",
+        "score1":"",
+        "score2":""
+    },
+    "second_place":{
+        "team1":"",
+        "team2":"",
+        "score1":"",
+        "score2":""
+    }
+}
