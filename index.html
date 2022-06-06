@@ -39,10 +39,9 @@
             }
             games = res.json();
             //call load games
-            loadGames();
+            loadGames(games);
         });
-        function loadGames(){
-            
+        function loadGames(games){
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
             for(let game in games){
                 let gameButton = document.createElement('a');
