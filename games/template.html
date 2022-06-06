@@ -109,4 +109,15 @@
   <button onclick="submitStandings()">UpdateScore</button>
 </body>
 <script>
+  let gameName = window.location.pathname.split("/")[-1]
+  fetch(gameName+".json").then(res => {
+      return res.json();
+  }).then(data =>{
+      populateTeams(data);
+  });
+  function loadStandings(){
+
+  }
+  function submitStandings(){
+  }
 </script>
