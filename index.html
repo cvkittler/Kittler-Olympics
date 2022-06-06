@@ -37,9 +37,9 @@
             if (!res.ok) {
                 alert("Failed to load games\n" + response.status);
             }
-            games = res.json();
+            games = res.body.json();
             //call load games
-            loadGames(games);
+            loadGames(games["games"]);
         });
         function loadGames(games){
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
