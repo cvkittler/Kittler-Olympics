@@ -33,15 +33,16 @@
         </a>
     </div>
     <script>
+        fetch(window.location.href + "games.json").then(res => {
+            if (!response.ok) {
+                alert("Failed to load games\n" + response.status);
+            }
+            games = response.json();
+            //call load games
+            loadGames();
+        });
         function loadGames(){
-            fetch(window.location.href + "games.json").then(res => {
-                if (!response.ok) {
-                    alert("Failed to load games\n" + response.status);
-                }
-                games = response.json();
-                //call load games
-                loadGames();
-            });
+            
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
             for(let game in games){
                 let gameButton = document.createElement('a');
