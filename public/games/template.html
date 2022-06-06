@@ -110,11 +110,12 @@
 </body>
 <script>
   let gameName = window.location.pathname.split("/")
-  fetch(gameName[gameName.length-1]+".json").then(res => {
+  fetch(gameName[gameName.length-1]).then(res => {
       return res.json();
   }).then(data =>{
-      populateTeams(data);
+      loadStandings(data);
   });
+
   function loadStandings(){
 
   }
