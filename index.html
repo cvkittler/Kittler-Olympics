@@ -34,12 +34,9 @@
     </div>
     <script>
         fetch(window.location.href + "games.json").then(res => {
-            if (!res.ok) {
-                alert("Failed to load games\n" + response.status);
-            }
-            games = res.body.json();
-            //call load games
-            loadGames(games["games"]);
+            return res.json();
+        }).then(data =>{
+            loadGames(data["games"]);
         });
         function loadGames(games){
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
