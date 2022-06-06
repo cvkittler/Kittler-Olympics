@@ -188,6 +188,66 @@
     return json;
   }
 
+  function buildJson(){
+    let json = {};
+    json.play_in.team1 = document.getElementById("spot1-1").textContent;
+    json.play_in.team2 = document.getElementById("spot1-2").textContent;
+
+    json.game_1.team1 = document.getElementById("spot2-1").textContent;
+    json.game_1.team2 = document.getElementById("spot2-2").textContent;
+
+    json.game_2.team1 = document.getElementById("spot2-3").textContent;
+    json.game_2.team2 = document.getElementById("spot2-4").textContent;
+
+    json.finals.team1 = document.getElementById("spot3-1").textContent;
+    json.finals.team2 = document.getElementById("spot3-2").textContent;
+
+    json.second_place.team1 = document.getElementById("spot3-3").textContent;
+    json.second_place.team2 = document.getElementById("spot3-4").textContent;
+
+    //scores
+    json.play_in.score1 = document.getElementById("spot1-1-score").value;
+    json.play_in.score2 = document.getElementById("spot1-2-score").value;
+
+    json.game_1.score1 = document.getElementById("spot2-1-score").value;
+    json.game_1.score2 = document.getElementById("spot2-2-score").value;
+
+    json.game_2.score1 = document.getElementById("spot2-3-score").value;
+    json.game_2.score2 = document.getElementById("spot2-4-score").value;
+
+    json.finals.score1 = document.getElementById("spot3-1-score").value;
+    json.finals.score2 = document.getElementById("spot3-2-score").value;
+
+    json.second_place.score1 = document.getElementById("spot3-3-score").value;
+    json.second_place.score2 = document.getElementById("spot3-4-score").value;
+
+    if(json.game_1.team1 == "" && json.play_in.score1 !== "" && json.play_in.score2 !== ""){
+      if (Number(json.play_in.score1)>Number(json.play_in.score2)){
+        json.game_1.team1 = json.play_in.team1;
+      }else{
+        json.game_1.team1 = json.play_in.team2;
+      }
+    }
+
+    if(json.finals.team1 == "" && json.game_1.score1 !== "" && json.game_1.score2 !== ""){
+      if (Number(json.game_1.score1)>Number(json.game_1.score2)){
+        json.finals.team1 = json.play_in.team1;
+        json.second_place.team1 = json.play_in.team1;
+      }else{
+        json.finals.team1 = json.play_in.team2;
+        json.second_place.team1 = json.play_in.team1;
+      }
+    }
+
+  }
+
   function submitStandings(){
+    console.log("uploading Score");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/updateStandings/' + gameName[gameName.length-1].replace(".html",""));
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify());
+    location.reload();
   }
 </script>
