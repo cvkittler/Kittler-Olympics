@@ -116,8 +116,12 @@
       loadStandings(data);
   });
 
-  function loadStandings(){
-
+  function loadStandings(json){
+    if(json["init"]){
+      console.log("populating board")
+    }else{
+      console.log("Pick random starting positions")
+    }
   }
   function submitStandings(){
   }
