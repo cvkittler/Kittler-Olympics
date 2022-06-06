@@ -6,7 +6,7 @@ var fs = require("fs");
 
 // create new express app and save it as "app"
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("/public"));
 
 // server configuration
 const PORT = 8081;
