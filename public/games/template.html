@@ -121,8 +121,38 @@
       console.log("populating board")
     }else{
       console.log("Pick random starting positions")
+      
+      fetch("teams.json").then(res => {
+          return res.json();
+      }).then(teams =>{
+          populateTeams(json,teams);
+      });
     }
   }
+
+  function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  function populateTeams(json,teams){
+    let teamList = [];
+    for(let teamStr in teams){
+      teamList.append(teamList);
+    }
+    teamList = shuffle(teamList);
+    json.play_in.team1 = teamList[0];
+    json.play_in.team2 = teamList[1];
+    json.game_2.team1 = teamList[2];
+    json.game_2.team2 = teamList[3];
+    json.game_1.team2 = teamList[4];
+  }
+
   function submitStandings(){
   }
 </script>
