@@ -122,7 +122,7 @@
     }else{
       console.log("Pick random starting positions")
       
-      fetch("teams.json").then(res => {
+      fetch("../loadpage/teams.json").then(res => {
           return res.json();
       }).then(teams =>{
           populateTeams(json,teams);
