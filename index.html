@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Istok+Web|Roboto+Condensed:700" rel="stylesheet"
         type="text/css" />
 
-    <link rel="stylesheet" href="loadpage/styleMain.css">
+    <link rel="stylesheet" href="/loadpage/styleMain.css">
 </head>
 
 <div>
@@ -44,7 +44,7 @@
                 let gameButton = document.createElement('a');
                 gameButton.innerText = games[game];
                 gameButton.className = "game-button";
-                gameButton.href = "/loadpage/games" + games[game];
+                gameButton.href = "/games/" + games[game] + ".html";
                 buttonContainerElem.appendChild(gameButton);
             }
         }
