@@ -1,0 +1,1 @@
+{"spot1":"CAW","spot2":"Tay's Terrorists","spot3":"Team Moe","spot4":"Smoking J's","spot5":"Red, White, and Drew","score1_1":"","score1_2":"","score2_1":"","score2_2":"","score2_3":"","score2_4":"","score3_1":"","score3_2":"","score3_3":"","score3_4":"","first":"","second":"","third":""}
