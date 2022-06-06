@@ -35,25 +35,12 @@
     <script>
         function loadGames(){
             fetch(window.location.href + "games.json").then(res => {
-                console.log(res)
-            })
-            // fetch().then(res =>
-            // {
-
-            // })
+                if (!response.ok) {
+                    alert("Failed to load games\n" + response.status);
+                }
+                games = response.json();
+            });
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
-            let games=[
-                "Badminton",
-                "Beer Pong",
-                "Bocce",
-                "Bowling",
-                "Can Jam",
-                "Cooking",
-                "Corn Hole",
-                "Mini-Golf",
-                "Polish Horse Shoes",
-                "Spike Ball"
-            ]
             for(let game in games){
                 let gameButton = document.createElement('a');
                 gameButton.innerText = games[game];
