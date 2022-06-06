@@ -6,7 +6,7 @@ var fs = require("fs");
 
 // create new express app and save it as "app"
 const app = express();
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static("./public"))
 
 
 // server configuration
