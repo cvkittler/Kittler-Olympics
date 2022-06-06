@@ -33,7 +33,7 @@
         </a>
     </div>
     <script>
-        fetch(window.location.href + "games.json").then(res => {
+        fetch("loadpage/games.json").then(res => {
             return res.json();
         }).then(data =>{
             loadGames(data["games"]);

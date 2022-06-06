@@ -18,7 +18,7 @@
             <p class="intro" id="intro">Kittler</p>
             <h1 id="headline">Olympics</h1>
             <p class="year">
-                <i class="fa fa-star"></i> 2021 <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i> 2022 <i class="fa fa-star"></i>
             </p>
             <p class="intro" style="font-size: 3em; margin-top: -.5em;">Teams</p>
         </div>
@@ -30,13 +30,13 @@
     </header>
 </div>
 <script>
-    console.log(window)
-    fetch(window.location.href + "teams.json").then(res => {
+    console.log(window.location)
+    fetch("teams.json").then(res => {
         return res.json();
     }).then(data =>{
         populateTeams(data);
     });
-    function populateTeams(){
+    function populateTeams(teams){
         teamsDiv = document.getElementById("teams-div")
         for(let teamStr in teams){
             teamLabel = document.createElement("div");
