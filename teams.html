@@ -30,6 +30,7 @@
     </header>
 </div>
 <script>
+    console.log(window)
     fetch(window.location.href + "teams.json").then(res => {
         return res.json();
     }).then(data =>{
