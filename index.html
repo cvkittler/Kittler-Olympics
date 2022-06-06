@@ -34,7 +34,9 @@
     </div>
     <script>
         function loadGames(){
-            console.log(window.location)
+            console.log(window.location.href + "/games").then(res => {
+                console.log(res)
+            })
             // fetch().then(res =>
             // {
 
