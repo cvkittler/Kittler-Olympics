@@ -12,7 +12,7 @@ app.use(express.static("./public"))
 // server configuration
 const PORT = 8081;
 
-// //Middle Ware
+//Middle Ware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -21,10 +21,11 @@ app.get("/", function (req, res) {
   console.log("Serving index.html");
   res.sendFile(__dirname + "/index.html");
 });
-
-app.get("/loadpage/:game", function (req, res) {
-  console.log(__dirname + "/" + req.params.game + ".html");
-  res.sendFile(__dirname + "/" + req.params.game + ".html");
+//load page
+app.get("/loadpage/:page", function (req, res) {
+  console.log("Loading Page" + req.params.page)
+  console.log(__dirname + "/" + req.params.page + ".html");
+  res.sendFile(__dirname + "/" + req.params.page + ".html");
 });
 
 app.get("/getData/:game", function (req, res) {
