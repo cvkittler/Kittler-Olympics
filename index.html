@@ -39,6 +39,8 @@
                     alert("Failed to load games\n" + response.status);
                 }
                 games = response.json();
+                //call load games
+                loadGames();
             });
             buttonContainerElem = document.getElementsByClassName("button-container")[0];
             for(let game in games){
@@ -50,7 +52,5 @@
             }
         }
 
-        //call load games
-        loadGames();
     </script>
 </div>
