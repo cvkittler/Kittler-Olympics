@@ -143,7 +143,7 @@
   function populateTeams(json,teams){
     let teamList = [];
     for(let teamStr in teams){
-      teamList.append(teamList);
+      teamList.push(teamList);
     }
     teamList = shuffle(teamList);
     json.play_in.team1 = teamList[0];
