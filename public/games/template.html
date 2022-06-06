@@ -125,11 +125,43 @@
       fetch("../loadpage/teams.json").then(res => {
           return res.json();
       }).then(teams =>{
-          populateTeams(json,teams);
+          json = populateTeams(json,teams);
       });
     }
   }
+  function fillHtml(json){
+      //fill team names
+      document.getElementById("spot1-1").textContent = json.play_in.team1;
+      document.getElementById("spot1-2").textContent = json.play_in.team2;
 
+      document.getElementById("spot2-1").textContent = json.game_1.team1;
+      document.getElementById("spot2-2").textContent = json.game_1.team2;
+
+      document.getElementById("spot2-3").textContent = json.game_2.team1;
+      document.getElementById("spot2-4").textContent = json.game_2.team2;
+
+      document.getElementById("spot2-1").textContent = json.finals.team1;
+      document.getElementById("spot2-2").textContent = json.finals.team2;
+
+      document.getElementById("spot2-3").textContent = json.second_place.team1;
+      document.getElementById("spot2-4").textContent = json.second_place.team2;
+
+      //scores
+      document.getElementById("spot1-1-score").value = json.play_in.score1;
+      document.getElementById("spot1-2-score").value = json.play_in.score2;
+
+      document.getElementById("spot2-1-score").value = json.game_1.score1;
+      document.getElementById("spot2-2-score").value = json.game_1.score2;
+
+      document.getElementById("spot2-3-score").value = json.game_2.score1;
+      document.getElementById("spot2-4-score").value = json.game_2.score2;
+
+      document.getElementById("spot3-1-score").value = json.finals.score1;
+      document.getElementById("spot3-2-score").value = json.finals.score2;
+
+      document.getElementById("spot3-3-score").value = json.second_place.score1;
+      document.getElementById("spot3-4-score").value = json.second_place.score2;
+  }
   function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -151,6 +183,7 @@
     json.game_2.team1 = teamList[2];
     json.game_2.team2 = teamList[3];
     json.game_1.team2 = teamList[4];
+    return json;
   }
 
   function submitStandings(){
