@@ -28,69 +28,69 @@ app.get("/loadpage/:page", function (req, res) {
   res.sendFile(__dirname + "/" + req.params.page + ".html");
 });
 
-app.get("/getData/:game", function (req, res) {
-  console.log(req.params.game);
-  fs.readFile(__dirname + "/" + req.params.game + ".txt", (err, data) => {
-    if (err) {
-      console.log("ERROR: FILE NOT FOUND \nCreating file");
-      fs.appendFileSync(
-        __dirname + "/" + req.params.game + ".txt",
-        '{"game":"' + req.params.game + '"}'
-      );
-      fs.readFileSync(
-        __dirname + "/" + req.params.game + ".txt",
-        (err, data) => {
-          if (err) {
-            throw err;
-          }
-          res.send('{"game":"' + req.params.game + '"}');
-        }
-      );
-    } else {
-      res.send(data.toString());
-    }
-  });
-});
+// app.get("/getData/:game", function (req, res) {
+//   console.log(req.params.game);
+//   fs.readFile(__dirname + "/" + req.params.game + ".txt", (err, data) => {
+//     if (err) {
+//       console.log("ERROR: FILE NOT FOUND \nCreating file");
+//       fs.appendFileSync(
+//         __dirname + "/" + req.params.game + ".txt",
+//         '{"game":"' + req.params.game + '"}'
+//       );
+//       fs.readFileSync(
+//         __dirname + "/" + req.params.game + ".txt",
+//         (err, data) => {
+//           if (err) {
+//             throw err;
+//           }
+//           res.send('{"game":"' + req.params.game + '"}');
+//         }
+//       );
+//     } else {
+//       res.send(data.toString());
+//     }
+//   });
+// });
 
-// POST method route
-app.post("/bet", function (req, res) {
-  console.log(req.body);
-  fs.writeFile(__dirname + "/bets.txt", JSON.stringify(req.body), (err) => {
-    if (err) throw err;
-  });
-  res.send("foo");
-});
+// // POST method route
+// app.post("/bet", function (req, res) {
+//   console.log(req.body);
+//   fs.writeFile(__dirname + "/bets.txt", JSON.stringify(req.body), (err) => {
+//     if (err) throw err;
+//   });
+//   res.send("foo");
+// });
 
-app.post("/updateStandings/:game", function (req, res) {
-  console.log(req.body);
-  fs.writeFile(
-    __dirname + "/" + req.params.game + ".txt",
-    JSON.stringify(req.body),
-    (err) => {
-      if (err) throw err;
-    }
-  );
-  console.log("The file has been saved!");
-  fs.readFile(__dirname + "/leaderboard.txt", (err, data) => {
-    if (err) {
-      throw err;
-    }
-    let standing = JSON.parse(data);
-    const game = req.params.game;
-    standing[game].first = req.body.first;
-    standing[game].second = req.body.second;
-    standing[game].third = req.body.third;
-    fs.writeFile(
-      __dirname + "/leaderboard.txt",
-      JSON.stringify(standing),
-      (err) => {
-        if (err) throw err;
-        console.log("The file has been saved!");
-      }
-    );
-  });
-  res.send("foo");
-});
+// app.post("/updateStandings/:game", function (req, res) {
+//   console.log(req.body);
+//   fs.writeFile(
+//     __dirname + "/" + req.params.game + ".txt",
+//     JSON.stringify(req.body),
+//     (err) => {
+//       if (err) throw err;
+//     }
+//   );
+//   console.log("The file has been saved!");
+//   fs.readFile(__dirname + "/leaderboard.txt", (err, data) => {
+//     if (err) {
+//       throw err;
+//     }
+//     let standing = JSON.parse(data);
+//     const game = req.params.game;
+//     standing[game].first = req.body.first;
+//     standing[game].second = req.body.second;
+//     standing[game].third = req.body.third;
+//     fs.writeFile(
+//       __dirname + "/leaderboard.txt",
+//       JSON.stringify(standing),
+//       (err) => {
+//         if (err) throw err;
+//         console.log("The file has been saved!");
+//       }
+//     );
+//   });
+//   res.send("foo");
+// });
 
 // make the server listen to requests
 app.listen(PORT, () => {
