@@ -1,6 +1,6 @@
 {
     "team1":{
-        "name":"Team1",
+        "name":"Team1 Name",
         "player":[
             "Brady",
             "Jamie",
@@ -9,7 +9,7 @@
         ]
     },
     "team2":{
-        "name":"Team2",
+        "name":"Team2 Name",
         "player":[
             "Caroline",
             "Caity",
@@ -18,7 +18,7 @@
         ]
     },
     "team3":{
-        "name":"Team3",
+        "name":"Team3 Name",
         "player":[
             "Jay",
             "Ben",
@@ -26,7 +26,7 @@
         ]
     },
     "team4":{
-        "name":"Team4",
+        "name":"Team4 Name",
         "player":[
             "Will",
             "Taylor",
@@ -34,7 +34,7 @@
         ]
     },
     "team5":{
-        "name":"Team5",
+        "name":"Team5 Name",
         "player":[
             "Jack",
             "Tim",
