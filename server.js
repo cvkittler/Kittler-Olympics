@@ -23,7 +23,7 @@ app.get("/", function (req, res) {
 });
 //load page
 app.get("/loadpage/:page", function (req, res) {
-  console.log("Loading Page" + req.params.page)
+  console.log("Loading Page " + req.params.page)
   console.log(__dirname + "/" + req.params.page + ".html");
   res.sendFile(__dirname + "/" + req.params.page + ".html");
 });
