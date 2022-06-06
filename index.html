@@ -34,10 +34,10 @@
     </div>
     <script>
         fetch(window.location.href + "games.json").then(res => {
-            if (!response.ok) {
+            if (!res.ok) {
                 alert("Failed to load games\n" + response.status);
             }
-            games = response.json();
+            games = res.json();
             //call load games
             loadGames();
         });
