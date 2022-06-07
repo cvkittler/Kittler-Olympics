@@ -181,42 +181,50 @@
       //change style for winners
       if (json.first !== ""){
         if (json.first == json.finals.team1){
-          document.getElementById("spot3-1").parentElement.style.backgroundColor=("gold");
-          document.getElementById("spot3-2").parentElement.style.backgroundColor=("silver");
+          spot3_1.parentElement.style.backgroundColor=("gold");
+          spot3_2.parentElement.style.backgroundColor=("silver");
         }else{
-          document.getElementById("spot3-2").parentElement.style.backgroundColor=("gold");
-          document.getElementById("spot3-1").parentElement.style.backgroundColor=("silver");
+          spot3_2.parentElement.style.backgroundColor=("gold");
+          spot3_1.parentElement.style.backgroundColor=("silver");
         }
       }
       if (json.third !== ""){
         if (json.third == json.third_place.team1){
-          document.getElementById("spot3-3").parentElement.style.backgroundColor=("#CD7F32");
+          spot3_3.parentElement.style.backgroundColor=("#CD7F32");
+          spot3_4.parentElement.style.backgroundColor="gray";
         }else{
-          document.getElementById("spot3-4").parentElement.style.backgroundColor=("#CD7F32");
+          spot3_4.parentElement.style.backgroundColor=("#CD7F32");
+          spot3_4.parentElement.style.backgroundColor="gray";
         }
       }
       //play in gray loser
       if(json.game_1.team1 !== "" ){
         if (Number(json.play_in.score1)>Number(json.play_in.score2)){
           spot1_2.parentElement.style.backgroundColor = "gray"
+          spot1_1.parentElement.style.backgroundColor = "#238652"
         }else{
           spot1_1.parentElement.style.backgroundColor = "gray"
+          spot1_2.parentElement.style.backgroundColor = "#238652"
         }
       }
       //game 1 gray loser
       if(json.game_1.team1 !== "" ){
         if (Number(json.game_1.score1)>Number(json.game_1.score2)){
           spot2_2.parentElement.style.backgroundColor = "gray"
+          spot2_1.parentElement.style.backgroundColor = "#238652"
         }else{
           spot2_1.parentElement.style.backgroundColor = "gray"
+          spot2_2.parentElement.style.backgroundColor = "#238652"
         }
       }
       //game 2 gray loser
       if(json.game_1.team1 !== "" ){
         if (Number(json.game_1.score1)>Number(json.game_1.score2)){
           spot2_4.parentElement.style.backgroundColor = "gray"
+          spot2_3.parentElement.style.backgroundColor = "#238652"
         }else{
           spot2_3.parentElement.style.backgroundColor = "gray"
+          spot2_4.parentElement.style.backgroundColor = "#238652"
         }
       }
   }
