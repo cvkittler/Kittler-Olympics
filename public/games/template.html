@@ -167,7 +167,7 @@
 
       document.getElementById("spot3-3-score").value = json.second_place.score1;
       document.getElementById("spot3-4-score").value = json.second_place.score2;
-
+      console.log(document.getElementById("spot3-1"));
       if (json.first !== ""){
         if (json.first == json.finals.team1){
           document.getElementById("spot3-1").style.backgroundColor("gold");
