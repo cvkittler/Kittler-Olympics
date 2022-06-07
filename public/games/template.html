@@ -169,15 +169,11 @@
       document.getElementById("spot3-4-score").value = json.second_place.score2;
       if (json.first !== ""){
         if (json.first == json.finals.team1){
-          var el1 = document.getElementById("spot3-1");
-          el1.style.backgroundColor("gold");
-          var el2 = document.getElementById("spot3-2");
-          el2.style.backgroundColor("gold");
+          document.getElementById("spot3-1").style.backgroundColor=("gold");
+          document.getElementById("spot3-2").style.backgroundColor=("silver");
         }else{
-          var el1 = document.getElementById("spot3-2");
-          el1.style.backgroundColor("gold");
-          var el2 = document.getElementById("spot3-1");
-          el2.style.backgroundColor("gold");
+          document.getElementById("spot3-2").style.backgroundColor=("gold");
+          document.getElementById("spot3-1").style.backgroundColor=("silver");
         }
       }
   }
