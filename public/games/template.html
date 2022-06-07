@@ -137,25 +137,35 @@
   }
   function fillHtml(json){
       //fill team names
-      document.getElementById("spot1-1").textContent = json.play_in.team1;
-      document.getElementById("spot1-2").textContent = json.play_in.team2;
+      let spot1_1 = document.getElementById("spot1-1");
+      let spot1_2 = document.getElementById("spot1-2");
+      spot1_1.textContent = json.play_in.team1;
+      spot1_2.textContent = json.play_in.team2;
 
-      document.getElementById("spot2-1").textContent = json.game_1.team1;
-      document.getElementById("spot2-2").textContent = json.game_1.team2;
+      let spot2_1 = document.getElementById("spot2-1");
+      let spot2_2 = document.getElementById("spot2-2");
+      spot2_1.textContent = json.game_1.team1;
+      spot2_2.textContent = json.game_1.team2;
 
-      document.getElementById("spot2-3").textContent = json.game_2.team1;
-      document.getElementById("spot2-4").textContent = json.game_2.team2;
+      let spot2_3 = document.getElementById("spot2-3");
+      let spot2_4 = document.getElementById("spot2-4");
+      spot2_3.textContent = json.game_2.team1;
+      spot2_4.textContent = json.game_2.team2;
 
-      document.getElementById("spot3-1").textContent = json.finals.team1;
-      document.getElementById("spot3-2").textContent = json.finals.team2;
+      let spot3_1 = document.getElementById("spot3-1");
+      let spot3_2 = document.getElementById("spot3-2");
+      spot3_1.textContent = json.finals.team1;
+      spot3_2.textContent = json.finals.team2;
 
-      document.getElementById("spot3-3").textContent = json.second_place.team1;
-      document.getElementById("spot3-4").textContent = json.second_place.team2;
+      let spot3_3 = document.getElementById("spot3-3");
+      let spot3_4 = document.getElementById("spot3-4");
+      spot3_3.textContent = json.third_place.team1;
+      spot3_4.textContent = json.third_place.team2;
 
       //scores
       document.getElementById("spot1-1-score").value = json.play_in.score1;
       document.getElementById("spot1-2-score").value = json.play_in.score2;
-
+      
       document.getElementById("spot2-1-score").value = json.game_1.score1;
       document.getElementById("spot2-2-score").value = json.game_1.score2;
 
@@ -165,8 +175,10 @@
       document.getElementById("spot3-1-score").value = json.finals.score1;
       document.getElementById("spot3-2-score").value = json.finals.score2;
 
-      document.getElementById("spot3-3-score").value = json.second_place.score1;
-      document.getElementById("spot3-4-score").value = json.second_place.score2;
+      document.getElementById("spot3-3-score").value = json.third_place.score1;
+      document.getElementById("spot3-4-score").value = json.third_place.score2;
+
+      //change style for winners
       if (json.first !== ""){
         if (json.first == json.finals.team1){
           document.getElementById("spot3-1").parentElement.style.backgroundColor=("gold");
@@ -174,6 +186,20 @@
         }else{
           document.getElementById("spot3-2").parentElement.style.backgroundColor=("gold");
           document.getElementById("spot3-1").parentElement.style.backgroundColor=("silver");
+        }
+      }
+      if (json.third !== ""){
+        if (json.third == json.third_place.team1){
+          document.getElementById("spot3-3").parentElement.style.backgroundColor=("bronze");
+        }else{
+          document.getElementById("spot3-4").parentElement.style.backgroundColor=("bronze");
+        }
+      }
+
+      if(json.game_1.team1 !== "" ){
+        if (Number(json.play_in.score1)>Number(json.play_in.score2)){
+          spot1_1.parentElement.style.backgroundColor = "gray"
+        }else{
         }
       }
   }
@@ -216,8 +242,8 @@
     json.finals.team1 = document.getElementById("spot3-1").textContent;
     json.finals.team2 = document.getElementById("spot3-2").textContent;
 
-    json.second_place.team1 = document.getElementById("spot3-3").textContent;
-    json.second_place.team2 = document.getElementById("spot3-4").textContent;
+    json.third_place.team1 = document.getElementById("spot3-3").textContent;
+    json.third_place.team2 = document.getElementById("spot3-4").textContent;
 
     //scores
     json.play_in.score1 = document.getElementById("spot1-1-score").value;
@@ -232,8 +258,8 @@
     json.finals.score1 = document.getElementById("spot3-1-score").value;
     json.finals.score2 = document.getElementById("spot3-2-score").value;
 
-    json.second_place.score1 = document.getElementById("spot3-3-score").value;
-    json.second_place.score2 = document.getElementById("spot3-4-score").value;
+    json.third_place.score1 = document.getElementById("spot3-3-score").value;
+    json.third_place.score2 = document.getElementById("spot3-4-score").value;
 
     //play in winner logic
     if(json.game_1.team1 == "" && json.play_in.score1 !== "" && json.play_in.score2 !== ""){
@@ -247,20 +273,20 @@
     if(json.finals.team1 == "" && json.game_1.score1 !== "" && json.game_1.score2 !== ""){
       if (Number(json.game_1.score1)>Number(json.game_1.score2)){
         json.finals.team1 = json.game_1.team1;
-        json.second_place.team1 = json.game_1.team1;
+        json.third_place.team1 = json.game_1.team1;
       }else{
         json.finals.team1 = json.game_1.team2;
-        json.second_place.team1 = json.game_1.team1;
+        json.third_place.team1 = json.game_1.team1;
       }
     }
     //game two winner logic
     if(json.finals.team2 == "" && json.game_2.score1 !== "" && json.game_2.score2 !== ""){
       if (Number(json.game_2.score1)>Number(json.game_2.score2)){
         json.finals.team2 = json.game_2.team1;
-        json.second_place.team2 = json.game_2.team1;
+        json.third_place.team2 = json.game_2.team1;
       }else{
         json.finals.team2 = json.game_2.team2;
-        json.second_place.team2 = json.game_2.team1;
+        json.third_place.team2 = json.game_2.team1;
       }
     }
     //finals winner logic
@@ -274,7 +300,7 @@
       }
     }
     //third place game winner logic
-    if(json.second_place.score1 !== "" && json.second_place.score2 !== ""){
+    if(json.third_place.score1 !== "" && json.third_place.score2 !== ""){
       if (Number(json.finals.score1)>Number(json.finals.score2)){
         json.third = json.finals.team1;
       }else{
