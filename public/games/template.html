@@ -170,11 +170,11 @@
 
       if (json.first !== ""){
         if (json.first == json.finals.team1){
-          document.getElementById("spot3-1").classList.add("first");
-          document.getElementById("spot3-2").classList.add("second");
+          document.getElementById("spot3-1").parentElement.classList.add("first");
+          document.getElementById("spot3-2").parentElement.classList.add("second");
         }else{
-          document.getElementById("spot3-2").classList.add("first");
-          document.getElementById("spot3-1").classList.add("second");
+          document.getElementById("spot3-2").parentElement.classList.add("first");
+          document.getElementById("spot3-1").parentElement.classList.add("second");
         }
       }
   }
