@@ -177,7 +177,7 @@
   function populateTeams(json,teams){
     let teamList = [];
     for(let teamStr in teams){
-      teamList.push(teamStr);
+      teamList.push(teams[teamStr].name);
     }
     teamList = shuffle(teamList);
     json.play_in.team1 = teamList[0];
@@ -231,11 +231,21 @@
 
     if(json.finals.team1 == "" && json.game_1.score1 !== "" && json.game_1.score2 !== ""){
       if (Number(json.game_1.score1)>Number(json.game_1.score2)){
-        json.finals.team1 = json.play_in.team1;
-        json.second_place.team1 = json.play_in.team1;
+        json.finals.team1 = json.game_1.team1;
+        json.second_place.team1 = json.game_1.team1;
       }else{
-        json.finals.team1 = json.play_in.team2;
-        json.second_place.team1 = json.play_in.team1;
+        json.finals.team1 = json.game_1.team2;
+        json.second_place.team1 = json.game_1.team1;
+      }
+    }
+
+    if(json.finals.team2 == "" && json.game_2.score1 !== "" && json.game_2.score2 !== ""){
+      if (Number(json.game_2.score1)>Number(json.game_2.score2)){
+        json.finals.team2 = json.game_2.team1;
+        json.second_place.team1 = json.game_2.team1;
+      }else{
+        json.finals.team1 = json.game_2.team2;
+        json.second_place.team1 = json.game_2.team1;
       }
     }
 
@@ -247,7 +257,8 @@
     xhr.open("POST", '/updateStandings/' + gameName[gameName.length-1].replace(".html",""));
     //Send the proper header information along with the request
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify());
-    location.reload();
+    const jsonData = buildJson();
+    fillHtml(jsonData);
+    xhr.send(JSON.stringify(jsonData));
   }
 </script>
