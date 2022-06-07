@@ -109,11 +109,13 @@
   <button onclick="submitStandings()">UpdateScore</button>
 </body>
 <script>
+  var jsonGlobal = {};
   let gameName = window.location.pathname.split("/")
   fetch("../game_data/"+gameName[gameName.length-1].replace(".html",".json")).then(res => {
       return res.json();
   }).then(data =>{
-      loadStandings(data);
+    jsonGlobal = data;
+      loadStandings(jsonGlobal);
   });
 
   function loadStandings(json){
@@ -127,6 +129,7 @@
           return res.json();
       }).then(teams =>{
           json = populateTeams(json,teams);
+          jsonGlobal = json;
           fillHtml(json);
       });
     }
@@ -164,6 +167,7 @@
       document.getElementById("spot3-3-score").value = json.second_place.score1;
       document.getElementById("spot3-4-score").value = json.second_place.score2;
   }
+
   function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -189,7 +193,7 @@
   }
 
   function buildJson(){
-    let json = {};
+    let json = jsonGlobal;
     json.play_in.team1 = document.getElementById("spot1-1").textContent;
     json.play_in.team2 = document.getElementById("spot1-2").textContent;
 
