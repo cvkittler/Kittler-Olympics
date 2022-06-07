@@ -195,11 +195,28 @@
           document.getElementById("spot3-4").parentElement.style.backgroundColor=("bronze");
         }
       }
-
+      //play in gray loser
       if(json.game_1.team1 !== "" ){
         if (Number(json.play_in.score1)>Number(json.play_in.score2)){
-          spot1_1.parentElement.style.backgroundColor = "gray"
+          spot1_2.parentElement.style.backgroundColor = "gray"
         }else{
+          spot1_1.parentElement.style.backgroundColor = "gray"
+        }
+      }
+      //game 1 gray loser
+      if(json.game_1.team1 !== "" ){
+        if (Number(json.game_1.score1)>Number(json.game_1.score2)){
+          spot2_2.parentElement.style.backgroundColor = "gray"
+        }else{
+          spot2_1.parentElement.style.backgroundColor = "gray"
+        }
+      }
+      //game 2 gray loser
+      if(json.game_1.team1 !== "" ){
+        if (Number(json.game_1.score1)>Number(json.game_1.score2)){
+          spot2_4.parentElement.style.backgroundColor = "gray"
+        }else{
+          spot2_3.parentElement.style.backgroundColor = "gray"
         }
       }
   }
@@ -302,9 +319,9 @@
     //third place game winner logic
     if(json.third_place.score1 !== "" && json.third_place.score2 !== ""){
       if (Number(json.finals.score1)>Number(json.finals.score2)){
-        json.third = json.finals.team1;
+        json.third = json.third_place.team1;
       }else{
-        json.third = json.finals.team2;
+        json.third = json.third_place.team2;
       }
     }
 
