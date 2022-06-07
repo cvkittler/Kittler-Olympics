@@ -130,6 +130,7 @@
       }).then(teams =>{
           json = populateTeams(json,teams);
           jsonGlobal = json;
+          jsonGlobal.init = true;
           fillHtml(json);
       });
     }
@@ -166,6 +167,16 @@
 
       document.getElementById("spot3-3-score").value = json.second_place.score1;
       document.getElementById("spot3-4-score").value = json.second_place.score2;
+
+      if (json.first !== ""){
+        if (json.first == json.finals.team1){
+          document.getElementById("spot3-1").classList.push("first");
+          document.getElementById("spot3-2").classList.push("second");
+        }else{
+          document.getElementById("spot3-2").classList.push("first");
+          document.getElementById("spot3-1").classList.push("second");
+        }
+      }
   }
 
   function shuffle(array) {
@@ -225,6 +236,7 @@
     json.second_place.score1 = document.getElementById("spot3-3-score").value;
     json.second_place.score2 = document.getElementById("spot3-4-score").value;
 
+    //play in winner logic
     if(json.game_1.team1 == "" && json.play_in.score1 !== "" && json.play_in.score2 !== ""){
       if (Number(json.play_in.score1)>Number(json.play_in.score2)){
         json.game_1.team1 = json.play_in.team1;
@@ -232,7 +244,7 @@
         json.game_1.team1 = json.play_in.team2;
       }
     }
-
+    //game one winner logic
     if(json.finals.team1 == "" && json.game_1.score1 !== "" && json.game_1.score2 !== ""){
       if (Number(json.game_1.score1)>Number(json.game_1.score2)){
         json.finals.team1 = json.game_1.team1;
@@ -242,16 +254,35 @@
         json.second_place.team1 = json.game_1.team1;
       }
     }
-
+    //game two winner logic
     if(json.finals.team2 == "" && json.game_2.score1 !== "" && json.game_2.score2 !== ""){
       if (Number(json.game_2.score1)>Number(json.game_2.score2)){
         json.finals.team2 = json.game_2.team1;
-        json.second_place.team1 = json.game_2.team1;
+        json.second_place.team2 = json.game_2.team1;
       }else{
-        json.finals.team1 = json.game_2.team2;
-        json.second_place.team1 = json.game_2.team1;
+        json.finals.team2 = json.game_2.team2;
+        json.second_place.team2 = json.game_2.team1;
       }
     }
+    //finals winner logic
+    if(json.finals.score1 !== "" && json.finals.score2 !== ""){
+      if (Number(json.finals.score1)>Number(json.finals.score2)){
+        json.first = json.finals.team1;
+        json.second = json.finals.team2;
+      }else{
+        json.first = json.finals.team2;
+        json.second = json.finals.team1;
+      }
+    }
+    //third place game winner logic
+    if(json.second_place.score1 !== "" && json.second_place.score2 !== ""){
+      if (Number(json.finals.score1)>Number(json.finals.score2)){
+        json.third = json.finals.team1;
+      }else{
+        json.third = json.finals.team2;
+      }
+    }
+
     return json;
   }
 

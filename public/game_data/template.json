@@ -1,5 +1,8 @@
 {
     "init":false,
+    "first":"",
+    "second":"",
+    "third":"",
     "play_in":{
         "team1":"",
         "team2":"",
