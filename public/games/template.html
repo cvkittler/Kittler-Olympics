@@ -132,6 +132,7 @@
           jsonGlobal = json;
           jsonGlobal.init = true;
           fillHtml(json);
+          submitStandings();
       });
     }
   }
@@ -191,11 +192,11 @@
       //change style for third place
       if (json.third !== ""){
         if (json.third == json.third_place.team1){
-          spot3_4.parentElement.style.backgroundColor=("#CD7F32");
-          spot3_3.parentElement.style.backgroundColor="gray";
-        }else{
           spot3_3.parentElement.style.backgroundColor=("#CD7F32");
           spot3_4.parentElement.style.backgroundColor="gray";
+        }else{
+          spot3_4.parentElement.style.backgroundColor=("#CD7F32");
+          spot3_3.parentElement.style.backgroundColor="gray";
         }
       }
       //play in gray loser
@@ -288,7 +289,7 @@
     json.third_place.score2 = document.getElementById("spot3-4-score").value;
 
     //play in winner logic
-    if(json.game_1.team1 == "" && json.play_in.score1 !== "" && json.play_in.score2 !== ""){
+    if(json.play_in.score1 !== "" && json.play_in.score2 !== ""){
       if (Number(json.play_in.score1)>Number(json.play_in.score2)){
         json.game_1.team1 = json.play_in.team1;
       }else{
@@ -296,7 +297,7 @@
       }
     }
     //game one winner logic
-    if(json.finals.team1 == "" && json.game_1.score1 !== "" && json.game_1.score2 !== ""){
+    if(json.game_1.score1 !== "" && json.game_1.score2 !== ""){
       if (Number(json.game_1.score1)>Number(json.game_1.score2)){
         json.finals.team1 = json.game_1.team1;
         json.third_place.team1 = json.game_1.team1;
@@ -306,7 +307,7 @@
       }
     }
     //game two winner logic
-    if(json.finals.team2 == "" && json.game_2.score1 !== "" && json.game_2.score2 !== ""){
+    if(json.game_2.score1 !== "" && json.game_2.score2 !== ""){
       if (Number(json.game_2.score1)>Number(json.game_2.score2)){
         json.finals.team2 = json.game_2.team1;
         json.third_place.team2 = json.game_2.team1;
