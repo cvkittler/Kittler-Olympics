@@ -112,7 +112,7 @@
   var jsonGlobal = {};
   let gameName = window.location.pathname.split("/");
   gameName = gameName[gameName.length-1].replace(".html","");
-  document.getElementById("headline").innerText =gameName.replace("%20", " ");
+  document.getElementById("headline").innerText =gameName.replaceAll("%20", " ");
   fetch("../getData/"+gameName+".json").then(res => {
       return res.json();
   }).then(data =>{
