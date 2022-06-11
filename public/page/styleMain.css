@@ -111,7 +111,7 @@
 <script>
   var jsonGlobal = {};
   let gameName = window.location.pathname.split("/")
-  fetch("../game_data/"+gameName[gameName.length-1].replace(".html",".json")).then(res => {
+  fetch("../getData/"+gameName[gameName.length-1].replace(".html",".json")).then(res => {
       return res.json();
   }).then(data =>{
     jsonGlobal = data;
@@ -341,7 +341,7 @@
   function submitStandings(){
     console.log("uploading Score");
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/updateStandings/' + gameName[gameName.length-1].replace(".html",""));
+    xhr.open("POST", '/updateStandings/' + gameName[gameName.length-1].replace(".html",".json"));
     //Send the proper header information along with the request
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     const jsonData = buildJson();

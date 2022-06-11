@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Istok+Web|Roboto+Condensed:700" rel="stylesheet"
         type="text/css" />
-    <link rel="stylesheet" href="styleMain.css">
+    <link rel="stylesheet" href="../loadpage/styleMain.css">
 </head>
 
 <div>
@@ -28,31 +28,31 @@
         <div id="scores">
             <div class="conainer">
                 <div class="leader-board-team first">first</div>
-                <div class="leader-board-team show-score" id="score">0</div>
+                <div class="leader-board-team show-score" id="score1">0</div>
                 <div class="leader-board-team" id="team1">TEST</div>
             </div>
 
             <div class="conainer">
                 <div class="leader-board-team second">second</div>
-                <div class="leader-board-team show-score" id="score">0</div>
+                <div class="leader-board-team show-score" id="score2">0</div>
                 <div class="leader-board-team" id="team2">TEST</div>
             </div>
 
             <div class="conainer">
                 <div class="leader-board-team third">third</div>
-                <div class="leader-board-team show-score" id="score">0</div>
+                <div class="leader-board-team show-score" id="score3">0</div>
                 <div class="leader-board-team" id="team3">TEST</div>
             </div>
 
             <div class="conainer">
                 <div class="leader-board-team other">forth</div>
-                <div class="leader-board-team show-score" id="score">0</div>
+                <div class="leader-board-team show-score" id="score4">0</div>
                 <div class="leader-board-team" id="team4">TEST</div>
             </div>
 
             <div class="conainer">
                 <div class="leader-board-team other">fifth</div>
-                <div class="leader-board-team show-score" id="score">0</div>
+                <div class="leader-board-team show-score" id="score5">0</div>
                 <div class="leader-board-team" id="team5">TEST</div>
             </div>
         </div>
@@ -72,7 +72,7 @@
 
     function getTeams() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/getData/teams');
+        xhr.open('GET', '/getData/teams.json');
 
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
@@ -89,7 +89,7 @@
 
     function getStandings() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/getData/leaderboard');
+        xhr.open('GET', '/getData/leaderboard.json');
 
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
@@ -106,7 +106,7 @@
     function populateLeaderBoard() {
         let teamScores = {}
         for (team in teams) {
-            teamScores[teams[team]] = 0;
+            teamScores[teams[team].name] = 0;
         }
         for (game in standingsGlobal) {
             if (standingsGlobal[game].first !== "" && standingsGlobal[game].first !== " ") {

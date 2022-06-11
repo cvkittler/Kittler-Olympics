@@ -25,15 +25,15 @@
         </div>
     </header>
     <div class="button-container ">
-        <a class="game-button leader-board" href="/loadpage/leaderBoard">
+        <a class="game-button leader-board" href="/page/leaderBoard.html">
             Leader board
         </a>
-        <a class="game-button teams-button" href="/loadpage/teams">
+        <a class="game-button teams-button" href="/page/teams.html">
             Teams
         </a>
     </div>
     <script>
-        fetch("loadpage/games.json").then(res => {
+        fetch("getdata/games.json").then(res => {
             return res.json();
         }).then(data =>{
             loadGames(data["games"]);
@@ -44,7 +44,7 @@
                 let gameButton = document.createElement('a');
                 gameButton.innerText = games[game];
                 gameButton.className = "game-button";
-                gameButton.href = "/games/" + games[game] + ".html";
+                gameButton.href = "/page/" + games[game] + ".html";
                 buttonContainerElem.appendChild(gameButton);
             }
         }

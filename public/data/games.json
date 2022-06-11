@@ -1,15 +1,20 @@
 {
     "games":[
-        "template",
         "Badminton",
+        "Bach Paddle",
         "Beer Pong",
         "Bocce",
         "Bowling",
         "Can Jam",
         "Cooking",
         "Corn Hole",
+        "Giant Jenga",
+        "Ladder Toss",
         "Mini-Golf",
         "Polish Horse Shoes",
+        "Pop Darts",
+        "Sand Castels",
+        "Sibling Infighting",
         "Spike Ball"
     ]
 }
