@@ -2,43 +2,42 @@
     "team1":{
         "name":"Team1 Name",
         "player":[
-            "Brady",
+            "Caity",
             "Jamie",
             "Kate",
-            "Andrew"
+            "Charlie"
         ]
     },
     "team2":{
         "name":"Team2 Name",
         "player":[
-            "Caroline",
-            "Caity",
-            "Nate",
-            "Charlie"
+            "Andrew",
+            "Will",
+            "Jacquie"
         ]
     },
     "team3":{
         "name":"Team3 Name",
         "player":[
-            "Jay",
-            "Ben",
-            "Jacquie"
+            "Brady",
+            "Ally",
+            "Nate"
         ]
     },
     "team4":{
         "name":"Team4 Name",
         "player":[
-            "Will",
-            "Taylor",
-            "Ally"
+            "Tim",
+            "Caroline",
+            "Julie"
         ]
     },
     "team5":{
         "name":"Team5 Name",
         "player":[
-            "Jack",
-            "Tim",
-            "Julie"
+            "Jay",
+            "Taylor",
+            "Jack"
         ]
     }
 }

@@ -20,7 +20,7 @@
       <p class="intro" id="intro">Kittler Olympics</p>
       <h1 id="headline"> TEMPLATE </h1>
       <p class="year">
-        <i class="fa fa-star"></i> 2022 <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i> 2023 <i class="fa fa-star"></i>
       </p>
       <p>Sponsered by Bud Light and Tums</p>
     </div>
@@ -182,7 +182,7 @@
       document.getElementById("spot3-4-score").value = json.third_place.score2;
 
       //change style for winners
-      if (json.first !== ""){
+      if (json.finals.score1  && json.finals.score2 ){
         if (json.first == json.finals.team1){
           spot3_1.parentElement.style.backgroundColor=("gold");
           spot3_2.parentElement.style.backgroundColor=("silver");
@@ -192,7 +192,7 @@
         }
       }
       //change style for third place
-      if (json.third !== ""){
+      if (json.third_place.score1 && json.third_place.score2 ){
         if (json.third == json.third_place.team1){
           spot3_3.parentElement.style.backgroundColor=("#CD7F32");
           spot3_4.parentElement.style.backgroundColor="gray";
@@ -201,8 +201,8 @@
           spot3_3.parentElement.style.backgroundColor="gray";
         }
       }
-      //play in gray loser
-      if(json.game_1.team1 !== "" ){
+      //play in gray = loser
+      if(json.play_in.score1  && json.play_in.score2 ){
         if (Number(json.play_in.score1)>Number(json.play_in.score2)){
           spot1_2.parentElement.style.backgroundColor = "gray"
           spot1_1.parentElement.style.backgroundColor = "#36c77b"
@@ -211,8 +211,8 @@
           spot1_2.parentElement.style.backgroundColor = "#36c77b"
         }
       }
-      //game 1 gray loser
-      if(json.game_1.team1 !== "" ){
+      //round 1 game 1 gray = loser
+      if(json.game_1.score1  && json.game_1.score2 ){
         if (Number(json.game_1.score1)>Number(json.game_1.score2)){
           spot2_2.parentElement.style.backgroundColor = "gray"
           spot2_1.parentElement.style.backgroundColor = "#36c77b"
@@ -221,9 +221,9 @@
           spot2_2.parentElement.style.backgroundColor = "#36c77b"
         }
       }
-      //game 2 gray loser
-      if(json.game_1.team1 !== "" ){
-        if (Number(json.game_1.score1)>Number(json.game_1.score2)){
+      //round 1 game 2 gray loser
+      if(json.game_2.score1 && json.game_2.score2){
+        if (Number(json.game_2.score1)>Number(json.game_2.score2)){
           spot2_4.parentElement.style.backgroundColor = "gray"
           spot2_3.parentElement.style.backgroundColor = "#36c77b"
         }else{
@@ -291,7 +291,7 @@
     json.third_place.score2 = document.getElementById("spot3-4-score").value;
 
     //play in winner logic
-    if(json.play_in.score1 !== "" && json.play_in.score2 !== ""){
+    if(json.play_in.score1 && json.play_in.score2){
       if (Number(json.play_in.score1)>Number(json.play_in.score2)){
         json.game_1.team1 = json.play_in.team1;
       }else{
@@ -299,27 +299,27 @@
       }
     }
     //game one winner logic
-    if(json.game_1.score1 !== "" && json.game_1.score2 !== ""){
+    if(json.game_1.score1  && json.game_1.score2 ){
       if (Number(json.game_1.score1)>Number(json.game_1.score2)){
         json.finals.team1 = json.game_1.team1;
-        json.third_place.team1 = json.game_1.team1;
+        json.third_place.team1 = json.game_1.team2;
       }else{
         json.finals.team1 = json.game_1.team2;
-        json.third_place.team1 = json.game_1.team1;
+        json.third_place.team1  = json.game_1.team1;
       }
     }
     //game two winner logic
-    if(json.game_2.score1 !== "" && json.game_2.score2 !== ""){
+    if(json.game_2.score1  && json.game_2.score2 ){
       if (Number(json.game_2.score1)>Number(json.game_2.score2)){
         json.finals.team2 = json.game_2.team1;
-        json.third_place.team2 = json.game_2.team1;
+        json.third_place.team2 = json.game_2.team2;
       }else{
         json.finals.team2 = json.game_2.team2;
         json.third_place.team2 = json.game_2.team1;
       }
     }
     //finals winner logic
-    if(json.finals.score1 !== "" && json.finals.score2 !== ""){
+    if(json.finals.score1  && json.finals.score2 ){
       if (Number(json.finals.score1)>Number(json.finals.score2)){
         json.first = json.finals.team1;
         json.second = json.finals.team2;
@@ -329,7 +329,7 @@
       }
     }
     //third place game winner logic
-    if(json.third_place.score1 !== "" && json.third_place.score2 !== ""){
+    if(json.third_place.score1  && json.third_place.score2 ){
       if (Number(json.finals.score1)>Number(json.finals.score2)){
         json.third = json.third_place.team1;
       }else{
