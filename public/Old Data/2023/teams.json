@@ -1,0 +1,43 @@
+{
+    "team1":{
+        "name":"Hot Doggers",
+        "player":[
+            "Caity",
+            "Jamie",
+            "Kate",
+            "Charlie"
+        ]
+    },
+    "team2":{
+        "name":"Jaws",
+        "player":[
+            "Andrew",
+            "Will",
+            "Jacquie"
+        ]
+    },
+    "team3":{
+        "name":"The Moe Hawks",
+        "player":[
+            "Brady",
+            "Ally",
+            "Nate"
+        ]
+    },
+    "team4":{
+        "name":"CBC",
+        "player":[
+            "Tim",
+            "Caroline",
+            "Julie"
+        ]
+    },
+    "team5":{
+        "name":"Drunken' Donuts",
+        "player":[
+            "Jay",
+            "Taylor",
+            "Jack"
+        ]
+    }
+}
