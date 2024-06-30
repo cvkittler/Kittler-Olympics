@@ -1,0 +1,44 @@
+{
+    "team1":{
+        "name":"Fireball and Fireworks",
+        "player":[
+            "Brady",
+            "Jamie",
+            "Kate",
+            "Andrew"
+        ]
+    },
+    "team2":{
+        "name":"The 4 Horsemen",
+        "player":[
+            "Caroline",
+            "Caity",
+            "Nate",
+            "Charlie"
+        ]
+    },
+    "team3":{
+        "name":"Blood Sweat and Beers",
+        "player":[
+            "Jay",
+            "Ben",
+            "Jacquie"
+        ]
+    },
+    "team4":{
+        "name":"Chicken",
+        "player":[
+            "Will",
+            "Taylor",
+            "Ally"
+        ]
+    },
+    "team5":{
+        "name":"2 Kitts & 1 Fitz",
+        "player":[
+            "Jack",
+            "Tim",
+            "Julie"
+        ]
+    }
+}

@@ -1,0 +1,145 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Holtwood+One+SC" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Herr+Von+Muellerhoff" rel="stylesheet"
+        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web|Roboto+Condensed:700" rel="stylesheet"
+        type="text/css" />
+    <link rel="stylesheet" href="../loadpage/styleMain.css">
+</head>
+
+<div>
+    <header class="hero">
+        <div class="hero-wrap">
+            <p class="intro" id="intro">Kittler</p>
+            <h1 id="headline">Olympics</h1>
+            <p class="year">
+                <i class="fa fa-star"></i> 2022 <i class="fa fa-star"></i>
+            </p>
+            <p class="intro" style="font-size: 3em; margin-top: -.5em;">Leader Board</p>
+        </div>
+        <a class="game-button-2" href="/">
+            Home
+        </a>
+        <div id="scores">
+            <div class="conainer">
+                <div class="leader-board-team first">first</div>
+                <div class="leader-board-team show-score" id="score1">0</div>
+                <div class="leader-board-team" id="team1">TEST</div>
+            </div>
+
+            <div class="conainer">
+                <div class="leader-board-team second">second</div>
+                <div class="leader-board-team show-score" id="score2">0</div>
+                <div class="leader-board-team" id="team2">TEST</div>
+            </div>
+
+            <div class="conainer">
+                <div class="leader-board-team third">third</div>
+                <div class="leader-board-team show-score" id="score3">0</div>
+                <div class="leader-board-team" id="team3">TEST</div>
+            </div>
+
+            <div class="conainer">
+                <div class="leader-board-team other">forth</div>
+                <div class="leader-board-team show-score" id="score4">0</div>
+                <div class="leader-board-team" id="team4">TEST</div>
+            </div>
+
+            <div class="conainer">
+                <div class="leader-board-team other">fifth</div>
+                <div class="leader-board-team show-score" id="score5">0</div>
+                <div class="leader-board-team" id="team5">TEST</div>
+            </div>
+        </div>
+    </header>
+</div>
+<script>
+    var teams = null;
+    var standingsGlobal = null;
+
+    var gotTeams = false;
+    var gotStandings = false;
+
+    window.onload = function () {
+        console.log("Window loaded");
+        getTeams();
+    }
+
+    function getTeams() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/getData/teams.json');
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    //load and randomize teams
+                    teams = JSON.parse(xhr.response);
+                    getStandings();
+                }
+            }
+        };
+
+        xhr.send(null);
+    }
+
+    function getStandings() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/getData/leaderboard.json');
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    standingsGlobal = JSON.parse(xhr.response);
+                    populateLeaderBoard();
+                }
+            }
+        };
+
+        xhr.send(null);
+    }
+
+    function populateLeaderBoard() {
+        let teamScores = {}
+        for (team in teams) {
+            teamScores[teams[team].name] = 0;
+        }
+        for (game in standingsGlobal) {
+            if (standingsGlobal[game].first !== "" && standingsGlobal[game].first !== " ") {
+                teamScores[standingsGlobal[game].first] += 5;
+            }
+            if (standingsGlobal[game].second !== "" && standingsGlobal[game].second !== " ") {
+                teamScores[standingsGlobal[game].second] += 3;
+            }
+            if (standingsGlobal[game].third !== "" && standingsGlobal[game].third !== " ") {
+                teamScores[standingsGlobal[game].third] += 1;
+            }
+        }
+        let array = [];
+        for (var i in teamScores) {
+            array.push([i, teamScores[i]]);
+        }
+        array.sort((a, b) => {
+            return ((b[1] - a[1]));
+        });
+        document.getElementById("team1").innerText = array[0][0];
+        document.getElementById("score1").innerText = array[0][1];
+
+
+        document.getElementById("team2").innerText = array[1][0];
+        document.getElementById("score2").innerText = array[1][1];
+
+        document.getElementById("team3").innerText = array[2][0];
+        document.getElementById("score3").innerText = array[2][1];
+
+        document.getElementById("team4").innerText = array[3][0];
+        document.getElementById("score4").innerText = array[3][1];
+
+        document.getElementById("team5").innerText = array[4][0];
+        document.getElementById("score5").innerText = array[4][1];
+    }
+</script>
