@@ -1,0 +1,47 @@
+{
+    "team1":{
+        "name":"Double Jack Andy's",
+        "player":[
+            "Andrew",
+            "Jacquie",
+            "Jack"
+        ]
+    },
+    "team2":{
+        "name":"Victators",
+        "player":[
+            "Jay",
+            "Tim",
+            "Vic",
+            "Jamie"
+        ]
+    },
+    "team3":{
+        "name":"Red White & Due",
+        "player":[
+            "Charlie",
+            "Caroline",
+            "Caity",
+            "Julie"
+        ]
+    },
+    "team4":{
+        "name":"Ginja Ninjas",
+        "player":[
+            "Brady",
+            "Taylor",
+            "Nate",
+            "Kate"
+        ]
+    },
+    "team5":{
+        "name":"Daddy Day Care",
+        "player":[
+            "Will",
+            "Ally",
+            "Ben",
+            "Lexi",
+            "The Other two"
+        ]
+    }
+}

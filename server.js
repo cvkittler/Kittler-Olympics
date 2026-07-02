@@ -9,7 +9,7 @@ app.use(express.static("./public"))
 
 
 // server configuration
-const PORT = 8081;
+const PORT = 8082;
 
 //Middle Ware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,7 +38,7 @@ app.get("/page/:game", function (req, res) {
   });
 });
 app.get("/getData/:game", function (req, res) {
-  console.log("sedning data for: " + req.params.game);
+  console.log("sending data for: " + req.params.game);
   fs.readFile(__dirname + "/public/data/" + req.params.game, (err, data) => {
     if (err) {
       console.log("ERROR: FILE NOT FOUND \nCreating file");
@@ -78,6 +78,10 @@ app.post("/updateStandings/:game", function (req, res) {
       temp["first"] = req.body.first.toString();
       temp["second"] = req.body.second.toString();
       temp["third"] = req.body.third.toString();
+      if(standing.hasOwnProperty(game)){
+        // if the game does not exist in the leaderboard, create a new entry
+        
+      }
       standing[game] = temp;
       let stringOfStandings = JSON.stringify(standing);
 
