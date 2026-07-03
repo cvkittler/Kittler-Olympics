@@ -21,7 +21,7 @@
             <p class="year">
                 <i class="fa fa-star"></i>2026<i class="fa fa-star"></i>
             </p>
-            <p>Sponsored by Family and Lotto Tickets</p>
+            <p>Making the Next Generation of 'Athletes'</p>
         </div>
     </header>
     <div class="button-container ">
@@ -32,6 +32,10 @@
             Teams
         </a>
     </div>
+    <form>
+        <input type="text" id="admin-password" placeholder="Admin Password" /><br />
+        <input type="submit" value="Submit" />
+    </form>
     <script>
         fetch("getdata/games.json").then(res => {
             return res.json();
@@ -48,5 +52,18 @@
                 buttonContainerElem.appendChild(gameButton);
             }
         }
+    </script>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const passwordInput = document.getElementById('admin-password');
+            const password = passwordInput.value;
+            if (password === 'charlie') {
+                window.location.href = '/page/admin.html';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        });
     </script>
 </div>

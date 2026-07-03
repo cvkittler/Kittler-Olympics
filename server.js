@@ -37,6 +37,28 @@ app.get("/page/:game", function (req, res) {
     }
   });
 });
+
+app.get("/reqFile/:file", function (req, res) {
+  console.log("sending file: " + req.params.file);
+  fs.readFile(__dirname + "/public/data/" + req.params.file, (err, data) => {
+    if (err) {
+      console.log("ERROR: FILE NOT FOUND");
+    } else {
+      res.send(data.toString());
+    }
+  });
+});
+
+app.get("/dataList", function (req, res) {
+  fs.readdir(__dirname + "/public/data/", (err, files) => {
+    if (err) {
+      console.log("ERROR: getting dataList");
+    } else {
+     res.send(JSON.stringify(files));
+    }
+  });
+});
+
 app.get("/getData/:game", function (req, res) {
   console.log("sending data for: " + req.params.game);
   fs.readFile(__dirname + "/public/data/" + req.params.game, (err, data) => {
@@ -52,6 +74,30 @@ app.get("/getData/:game", function (req, res) {
       });
     } else {
       res.send(data.toString());
+    }
+  });
+});
+
+app.post("/updateFile/:file", function (req, res) {
+  console.log("Updating " + req.params.file);
+  fs.writeFile(__dirname + "/public/data/" + req.params.file,
+    JSON.stringify(req.body),
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+});
+
+app.delete("/deleteFile/:file", function (req, res) {
+  console.log("Deleting " + req.params.file);
+  fs.unlink(__dirname + "/public/data/" + req.params.file, (err) => {
+    if (err) {
+      console.log("ERROR: failed to delete file");
+    } else {
+      console.log("File deleted successfully!");
+      res.send("File deleted successfully!");
     }
   });
 });
@@ -78,10 +124,6 @@ app.post("/updateStandings/:game", function (req, res) {
       temp["first"] = req.body.first.toString();
       temp["second"] = req.body.second.toString();
       temp["third"] = req.body.third.toString();
-      if(standing.hasOwnProperty(game)){
-        // if the game does not exist in the leaderboard, create a new entry
-        
-      }
       standing[game] = temp;
       let stringOfStandings = JSON.stringify(standing);
 

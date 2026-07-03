@@ -1,0 +1,139 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Holtwood+One+SC" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Herr+Von+Muellerhoff" rel="stylesheet"
+    type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Istok+Web|Roboto+Condensed:700" rel="stylesheet"
+    type="text/css" />
+    <link rel="stylesheet" href="../loadpage/styleMain.css">
+
+  <title id="title"> admin </title>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero-wrap">
+      <p class="intro" id="intro">Kittler Olympics</p>
+      <h1 id="headline"> TEMPLATE </h1>
+      <p class="year">
+        <i class="fa fa-star"></i> 2026 <i class="fa fa-star"></i>
+      </p>
+      <p>Sponsered by Family and Lotto Tickets</p>
+    </div>
+    <a class="game-button" href="/">
+      Home
+    </a>
+  </header>
+</body>
+
+<div>
+  <form class="button-container" style = "padding-left: 10vw; padding-right: 10vw;">
+    <select id="filesNames" style="display: block;" class="game-button" style = "font-size: .1em;"></select>
+    <textarea id="json-edit-area" rows="20" cols="50"></textarea>
+    <input type="submit" style="display: block;" class="game-button" value="Submit" onclick="updateFile()"/>
+    <input type="button" style="display: block; background-color:red" class="game-button" value="Delete" onclick="deleteFile()"/>
+  </form>
+</div>
+
+<script>
+  const dropdown = document.getElementById("filesNames");
+  var jsonGlobal = {};
+  let gameName = window.location.pathname.split("/");
+  gameName = gameName[gameName.length-1].replace(".html","");
+  document.getElementById("headline").innerText =gameName.replaceAll("%20", " ");
+
+  dropdown.addEventListener("change", function() {
+    const selectedFile = dropdown.value;
+    fetch("/reqFile/" + selectedFile)
+      .then(response => response.json())
+      .then(data => {
+        jsonGlobal = data;
+        document.getElementById("json-edit-area").value = JSON.stringify(data, null, 2);
+      })
+      .catch(error => console.error("Error fetching file:", error));
+  });
+  
+  fetch("/dataList").then(res => {
+      return res.json();
+  }).then(data =>{
+      console.log(data);
+      let option = document.createElement("option");
+      option.value = "";
+      option.text = "Select a file";
+      dropdown.appendChild(option);
+      data.forEach(file => {
+        let option = document.createElement("option");
+        option.value = file;
+        option.text = file;
+        dropdown.appendChild(option);
+      });
+  });
+
+  function updateFile() {
+    const selectedFile = dropdown.value;
+    const updatedContent = document.getElementById("json-edit-area").value;
+    try {
+      const parsedContent = JSON.parse(updatedContent);
+      fetch("/updateFile/" + selectedFile, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(parsedContent)
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("File updated successfully!");
+        } else {
+          alert("Error updating file.");
+        }
+      })
+      .catch(error => console.error("Error updating file:", error));
+    } catch (e) {
+      alert("Invalid JSON format. Please correct it before submitting.");
+    }
+  }
+
+  function deleteFile() {
+    const selectedFile = dropdown.value;
+    if (!selectedFile) {
+      alert("Please select a file to delete.");
+      return;
+    }
+    if (confirm(`Are you sure you want to delete ${selectedFile}?`)) {
+      fetch("/deleteFile/" + selectedFile, {
+        method: "DELETE"
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("File deleted successfully!");
+          // Remove the deleted file from the dropdown
+          const optionToRemove = Array.from(dropdown.options).find(option => option.value === selectedFile);
+          if (optionToRemove) {
+            dropdown.removeChild(optionToRemove);
+          }
+          // Clear the textarea
+          document.getElementById("json-edit-area").value = "";
+        } else {
+          alert("Error deleting file.");
+        }
+      })
+      .catch(error => console.error("Error deleting file:", error));
+    }
+  }
+  function submitStandings(){
+    console.log("uploading Score");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/updateStandings/' + gameName+".json");
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    const jsonData = buildJson();
+    fillHtml(jsonData);
+    xhr.send(JSON.stringify(jsonData));
+  }
+
+</script>
